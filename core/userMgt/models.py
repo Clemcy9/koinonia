@@ -24,3 +24,12 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user)
     
+
+def create_profile(user):
+    pass
+
+def get_profile(user):
+    pass
+
+def delete_profile(user):
+    pass
