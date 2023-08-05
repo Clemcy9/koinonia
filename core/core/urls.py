@@ -19,10 +19,16 @@ from django.urls import path, include
 # for drf api
 from rest_framework import routers
 from prayerRm.views import PrayerView
+from userMgt.views import UserView, ProfileView
+from community.views import CommunityView
 
 
 router = routers.DefaultRouter()
 router.register(r'prayer', PrayerView)
+router.register(r'user', UserView)
+router.register(r'profile', ProfileView)
+router.register(r'community',CommunityView)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

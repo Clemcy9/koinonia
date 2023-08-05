@@ -10,8 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
         depth = 1
 
 class ProfileSerializer(serializers.ModelSerializer):
-
+    user = serializers.StringRelatedField()
     class Meta:
         model = Profile
         fields = '__all__'
-        
+        depth = 1
