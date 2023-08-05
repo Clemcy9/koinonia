@@ -7,8 +7,7 @@ user = get_user_model()
 class PrayerRm(models.Model):
     name = models.CharField(max_length=255)
     participants = models.ManyToManyField(user)
-    admin = models.ForeignKey(user,related_name='admin_group', on_delete=models.DO_NOTHING, null=True, blank=True)
-
+    admin = models.ManyToManyField(user, related_name='group_admins')
     def __str__(self) -> str:
         return self.name
     
