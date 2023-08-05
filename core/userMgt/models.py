@@ -5,9 +5,6 @@ from django.conf import settings
 # Create your models here.
 
 class User(AbstractUser):
-    pass
-
-class User(AbstractUser):
     email = models.EmailField(unique=True, null=True)
     avatar = models.ImageField(null=True, default='avatar.svg')
     USERNAME_FIELD = 'email'

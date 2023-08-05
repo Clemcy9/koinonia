@@ -16,7 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# for drf api
+from rest_framework import routers
+from prayerRm.views import PrayerView
+
+
+router = routers.DefaultRouter()
+router.register(r'prayer', PrayerView)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('prayer/',include('prayerRm.urls'))
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

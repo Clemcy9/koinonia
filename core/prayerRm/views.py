@@ -1,8 +1,23 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from .models import PrayerRm
+from rest_framework import viewsets
+from .serializers import RoomSerializer
 
 # Create your views here.
+
+# api start
+
+class PrayerView(viewsets.ModelViewSet):
+    queryset = PrayerRm.objects.all()
+    serializer_class = RoomSerializer
+
+
+
+
+
+
+# api end
 
 # prayer group
 def create_prayerRm(request):
