@@ -2,12 +2,17 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from .models import PrayerRm
 from rest_framework import viewsets
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from .serializers import RoomSerializer
 
 # Create your views here.
 
 # api start
 
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 class PrayerView(viewsets.ModelViewSet):
     queryset = PrayerRm.objects.all()
     serializer_class = RoomSerializer
