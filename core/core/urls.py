@@ -33,6 +33,7 @@ router.register(r'community',CommunityView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('', include(router.urls)),
     path('user/', UserView.as_view()),
     path('login/',LoginView.as_view()),

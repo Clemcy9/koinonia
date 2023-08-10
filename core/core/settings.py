@@ -38,7 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+
+    'django.contrib.sites',
     'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+
     'rest_framework.authtoken',
     'prayerRm',
     'userMgt',
@@ -104,13 +112,37 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+# rest framework config
 REST_FRAMEWORK ={
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
     ]
 }
 
+# all_auth library config
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook':{
+        'APP':{
+            'client_id': '1450115019174104',
+            'secret': '0ed8e65c4e050522b27e684b20653c4c',
+            'key':''
+        }
+    },
+    'google':{
+        'APP':{
+            'client_id': '802944885729-5p6m0ku0hgmbirpgguai9s794lppqgui.apps.googleusercontent.com',
+            'secret': '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',
+            'key':''
+        }
+    }
+}
+
+SITE_ID = 1
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -135,3 +167,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # user model conf.
 AUTH_USER_MODEL = 'userMgt.User'
+
+LOGIN_REDIRECT_URL = 'home'
+# SIGNUP_REDIRECT_URL = 'home'
+
+LOGOUT_REDIRECT_URL = 'LoginView'

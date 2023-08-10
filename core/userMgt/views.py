@@ -31,7 +31,7 @@ class ProfileView(viewsets.ModelViewSet):
 # login view
 class LoginView(views.APIView):
     def get(self, request, *args, **kwargs):
-        pass
+        return Response('login route')
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
         password = request.data.get('password')
