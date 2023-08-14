@@ -40,14 +40,17 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'django.contrib.sites',
-    'rest_framework',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
 
+    'rest_framework',
     'rest_framework.authtoken',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
     'prayerRm',
     'userMgt',
     'community',
@@ -168,7 +171,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # user model conf.
 AUTH_USER_MODEL = 'userMgt.User'
 
-LOGIN_REDIRECT_URL = 'home'
 # SIGNUP_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/prayer'
 
-LOGOUT_REDIRECT_URL = 'LoginView'
+LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/accounts/login'
+
+AUTHENTICATION_METHOD = 'email'
+# USERNAME_FIELD = None

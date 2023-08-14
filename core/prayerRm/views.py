@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponse
 from .models import PrayerRm
 from rest_framework import viewsets
 from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication,SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .serializers import RoomSerializer
 
@@ -11,7 +11,7 @@ from .serializers import RoomSerializer
 
 # api start
 
-@authentication_classes([TokenAuthentication])
+@authentication_classes([TokenAuthentication, SessionAuthentication])
 @permission_classes([IsAuthenticated])
 class PrayerView(viewsets.ModelViewSet):
     queryset = PrayerRm.objects.all()

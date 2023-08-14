@@ -19,13 +19,14 @@ from django.urls import path, include
 # for drf api
 from rest_framework import routers
 from prayerRm.views import PrayerView
-from userMgt.views import logout_view, UserView, ProfileView, UserDetailView, LoginView
+from userMgt.views import logout_view, UserView, ProfileView, UserDetailView, LoginView,LogoutView
 from community.views import CommunityView
+from rest_framework import urls, views 
 
 
 router = routers.DefaultRouter()
 router.register(r'prayer', PrayerView)
-# router.register(r'user', UserView)
+router.register(r'user', UserView)
 # router.register(r'login',LoginView)
 router.register(r'profile', ProfileView)
 router.register(r'community',CommunityView)
@@ -35,9 +36,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include(router.urls)),
-    path('user/', UserView.as_view()),
+    # path('user/', UserView.as_view()),
     path('login/',LoginView.as_view()),
+    # path('logout1/', LogoutView.as_view())s,    
     path('logout/', logout_view),
     path('user/<int:pk>',UserDetailView.as_view()),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('rest-auth;', include('dj_rest_auth.urls'))
 ]
