@@ -13,20 +13,22 @@ from rest_framework.permissions import IsAuthenticated
 
 from allauth.account import views as allauth_view
 
+# for dj_rest_auth with google
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import SocialLoginView
+
 # Create your views here. 
 
 # # api start
-# class UserView(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
 
+@authentication_classes([TokenAuthentication,SessionAuthentication])
+@permission_classes([IsAuthenticated])
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 class ProfileView(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
@@ -68,6 +70,14 @@ def logout_view(request):
 class LogoutView(views.APIView,allauth_view.LogoutView):
     def post(self, *args, **kwargs):
         return super().post(*args, **kwargs)
+    
+# dj_rest_auth apis
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    callback_url = '/home'
+    client_class = OAuth2Client
+
+
 
 #api end
 

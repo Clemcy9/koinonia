@@ -131,17 +131,20 @@ AUTHENTICATION_BACKENDS = (
 SOCIALACCOUNT_PROVIDERS = {
     'facebook':{
         'APP':{
-            'client_id': '1450115019174104',
-            'secret': '0ed8e65c4e050522b27e684b20653c4c',
+            'client_id': '978028510114641',
+            'secret': 'c54ef7018ada07eb7c7abb3c6fdf259c',
             'key':''
         }
     },
     'google':{
         'APP':{
-            'client_id': '802944885729-5p6m0ku0hgmbirpgguai9s794lppqgui.apps.googleusercontent.com',
-            'secret': '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',
-            'key':''
-        }
+            'client_id': '202667312835-8sbtfif2nht9p92fppst31rvnq79dvdb.apps.googleusercontent.com',
+            'secret': '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',
+            'key':'',
+        # 'redirect_uri':'http://localhost:8000/prayer',
+        },
+        'SCOPE':['profile','email'],
+        'AUTH_PARAMS':{'access_type':'offline',}
     }
 }
 
@@ -172,7 +175,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'userMgt.User'
 
 # SIGNUP_REDIRECT_URL = 'home'
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/prayer'
+LOGIN_REDIRECT_URL = 'http://localhost:8000/prayer'
 
 LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/accounts/login'
 
